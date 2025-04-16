@@ -34,3 +34,26 @@ void Fraction::print() const
 {
     std::cout << m_numerator << '/' << m_denominator << '\n';
 }
+
+Fraction operator*(const Fraction& f1, const Fraction& f2)
+{
+    // By returning a fraction using the constructor, we get reduce automatically
+    int numerator { f1.m_numerator * f2.m_numerator};
+    int denominator { f1.m_denominator * f2.m_denominator };
+
+    return Fraction { numerator, denominator };
+}
+
+Fraction operator*(const Fraction& f1, int value)
+{
+    // Same considerations apply here about the reduce operation
+    int numerator { f1.m_numerator * value };
+
+    return Fraction { numerator, f1.m_denominator };
+}
+
+Fraction operator*(int value, const Fraction& f1)
+{
+    // Call the other Fraction * int operator with swapped arguments
+    return f1 * value;
+}
